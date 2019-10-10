@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "675919602915",
+    "firebase_url": "https://testing-3a5ec.firebaseio.com",
+    "project_id": "testing-3a5ec",
+    "storage_bucket": "testing-3a5ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675919602915:android:2d1de7c86126f40dded1d6",
+        "android_client_info": {
+          "package_name": "com.firebase.uidemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBayWtcjDMz1-ijmIwuPh4oVyFJ6vOl7Wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675919602915:android:9c94312d646fb3a6ded1d6",
+        "android_client_info": {
+          "package_name": "com.google.firebase.example.fireeats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBayWtcjDMz1-ijmIwuPh4oVyFJ6vOl7Wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675919602915:android:fd3ebf85f95b5e10ded1d6",
+        "android_client_info": {
+          "package_name": "com.karigor.bloodseeker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBayWtcjDMz1-ijmIwuPh4oVyFJ6vOl7Wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

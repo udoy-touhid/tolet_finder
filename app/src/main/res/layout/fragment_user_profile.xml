@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center_horizontal" >
+
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/user_photo_edit_fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_email"
+                    android:tint="@color/white"
+                    app:backgroundTint="@color/colorAccentBlue"
+                    app:rippleColor="@color/colorAccentBlue"
+                    app:fabSize="mini"
+                    app:elevation="0dp"
+                    android:translationZ="0dp"
+                    app:pressedTranslationZ="0dp"
+                    app:borderWidth="0dp"
+                    app:useCompatPadding="true"
+                    android:layout_margin="0dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true" />
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/updateInfoForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/input_field_margin">
+
+                <EditText
+                    android:id="@+id/nick_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/input_field_height"
+                    android:hint="@string/first_name"
+                    android:inputType="textNoSuggestions"
+                    android:textColor="@color/textColorSecondary"
+                    android:textColorHint="@color/textColorPrimaryDark"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textAlignment="viewStart"
+                    android:gravity="start|center_vertical"
+                    android:layout_marginTop="@dimen/input_field_margin"
+                    android:background="@drawable/bg_editext" />
+                <EditText
+                    android:id="@+id/full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/input_field_height"
+                    android:hint="@string/last_name"
+                    android:inputType="textNoSuggestions"
+                    android:textColor="@color/textColorSecondary"
+                    android:textColorHint="@color/textColorPrimaryDark"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textAlignment="viewStart"
+                    android:gravity="start|center_vertical"
+                    android:layout_marginTop="@dimen/input_field_margin"
+                    android:background="@drawable/bg_editext" />
+
+
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/input_field_height"
+                    android:hint="@string/email_address"
+                    android:inputType="textEmailAddress|textNoSuggestions"
+                    android:textColor="@color/textColorSecondary"
+                    android:textColorHint="@color/textColorPrimaryDark"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textAlignment="viewStart"
+                    android:gravity="start|center_vertical"
+                    android:layout_marginTop="@dimen/input_field_margin"
+                    android:background="@drawable/bg_editext" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:text="@string/save_user"
+        android:textColor="@color/white"
+        android:textSize="@dimen/button_text_size"
+        android:background="@color/colorAccent"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
