@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -27,7 +30,7 @@ public class UserProfileFragment extends Fragment {
     private String mParam2;
 
     private View rootView;
-    //CircularImageView user_photo;
+    ImageView user_photo;
     private EditText input_nick_name, input_full_name, input_email;
 
 
@@ -80,11 +83,20 @@ public class UserProfileFragment extends Fragment {
         input_nick_name = rootView.findViewById(R.id.nick_name);
         input_full_name = rootView.findViewById(R.id.full_name);
         input_email = rootView.findViewById(R.id.email);
+        user_photo = rootView.findViewById(R.id.user_photo);
 
 
         input_full_name.setText(firebaseUser.getDisplayName());
         input_email.setText(firebaseUser.getEmail());
 
+
+        Glide.with(this)
+                .load(firebaseUser.getPhotoUrl())
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.ic_profile)
+                        .error(R.drawable.ic_profile)
+                )
+                .into(user_photo);
 
 
 
