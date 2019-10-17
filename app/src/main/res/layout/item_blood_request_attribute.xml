@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:paddingBottom="8dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/attribute"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+
+        android:paddingBottom="3dp"
+        android:gravity="center_vertical"
+        android:descendantFocusability="blocksDescendants">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_asterisk"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textSize="@dimen/text_size_item_regular"
+                android:text="@string/a_star"
+
+                android:textColor="@color/colorRed" />
+            <TextView
+
+                app:layout_constraintRight_toLeftOf="@id/tv_asterisk"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textStyle="bold"
+                android:id="@+id/attribute_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textSize="15sp"
+                android:textAlignment="viewStart"
+                android:text="@string/blood_group_select_label"
+
+                android:textColor="@color/textColorSecondary" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical|end"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/attribute_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textSize="15sp"
+                android:textAlignment="viewEnd"
+
+                android:textColor="@color/textColorSecondary" />
+            <ImageView
+                app:srcCompat="@drawable/ic_arrow_below"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+    <View
+        android:background="#99000000"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+</LinearLayout>

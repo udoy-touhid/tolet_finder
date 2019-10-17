@@ -1,11 +1,71 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppThemeBackup" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+<!--    <style name="AppTheme" parent="AppThemeBackup">-->
+<!--        <item name="actionBarStyle">@style/MyTheme.ActionBar</item>-->
+<!--        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>-->
+<!--        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">false</item>-->
+<!--    </style>-->
+
+<!--    <style name="MyTheme.ActionBar" parent="Widget.AppCompat.ActionBar">-->
+<!--        <item name="elevation" tools:targetApi="lollipop">0dp</item>-->
+<!--        <item name="background">@color/semi_transparent</item>-->
+<!--    </style>-->
+
+    <style name="FirebaseUI.Text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="FirebaseUI.Text.T01" tools:ignore="UnusedResources">
+        <item name="android:textSize">112sp</item>
+    </style>
+
+    <style name="FirebaseUI.Text.T02" tools:ignore="UnusedResources">
+        <item name="android:textSize">64sp</item>
+    </style>
+
+    <style name="FirebaseUI.Text.T03" tools:ignore="UnusedResources">
+        <item name="android:textSize">48sp</item>
+    </style>
+
+    <style name="FirebaseUI.Text.T04" tools:ignore="UnusedResources">
+        <item name="android:textSize">36sp</item>
+        <item name="android:lineSpacingExtra">12sp</item>
+    </style>
+
+    <style name="CountrySpinner" parent="Widget.AppCompat.Spinner.Underlined">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
+    <style name="TopProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:indeterminate">true</item>
+        <item name="android:visibility">invisible</item>
+<!--        <item name="mpb_progressStyle">horizontal</item>-->
+<!--        <item name="mpb_useIntrinsicPadding">false</item>-->
+    </style>
+
+    <style name="FirebaseUI.Text.BodyText" parent="FirebaseUI.Text.T08">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/fui_body_padding_bottom</item>
+    </style>
+
+    <style name="FirebaseUI.Text.T08" tools:ignore="UnusedResources">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+
 
 </resources>

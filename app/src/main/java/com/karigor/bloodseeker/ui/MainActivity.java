@@ -2,7 +2,11 @@ package com.karigor.bloodseeker.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,17 +33,19 @@ public class MainActivity extends AppCompatActivity {
 
     FragmentManager fragmentManager;
     private String TAG = "MainActivity";
+    boolean doublePressedBackToExit = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
-
-        initAuth();
         fragmentManager = getSupportFragmentManager();
+        initAuth();
+        //startActivity(new Intent(this, PhoneNumberActivity.class));
     }
-
 
 
     private void initAuth() {
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Choose authentication providers
         final List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.PhoneBuilder().build(),
+               // new AuthUI.IdpConfig.PhoneBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
                 new AuthUI.IdpConfig.FacebookBuilder().build()
         );
@@ -59,10 +65,11 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null) {
                     Log.w(TAG,"signed in");
                     // User is signed in
+
                     handleSignedInUser();
                 } else {
                     //onSignedOutCleanup();
-                    // User is signed out
+                    // User is signed out or not signed in
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
@@ -109,25 +116,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.main_menu, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.sign_out_menu:
-//                AuthUI.getInstance().signOut(this);
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-//
-//
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sign_out_menu:
+                AuthUI.getInstance().signOut(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
     private void handleSignedInUser() {
 
         Fragment fragment = new UserProfileFragment();
@@ -135,15 +142,38 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction()
                 .replace(R.id.main_fragment, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .addToBackStack(null).commit();
-
-
+                .addToBackStack(null)
+                .commitAllowingStateLoss();
     }
-//
-//    private void onSignedOutCleanup() {
-//        mUsername = ANONYMOUS;
-//        mMessageAdapter.clear();
-//        detachDatabaseReadListener();
-//    }
+    @Override
+    public void onBackPressed() {
+
+        // Get FragmentManager
+        FragmentManager fm = getSupportFragmentManager();
+
+        if (fm.getBackStackEntryCount() > 0) {
+            // Pop previous Fragment
+            fm.popBackStack();
+        }
+        else if (doublePressedBackToExit) {
+
+            // Check if doubleBackToExitPressed is true
+            super.onBackPressed();
+        }
+        else {
+            this.doublePressedBackToExit = true;
+            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+
+            // Delay of 2 seconds
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    // Set doublePressedBackToExit false after 2 seconds
+                    doublePressedBackToExit = false;
+                }
+            }, 2000);
+        }
+    }
 
 }

@@ -114,12 +114,13 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/proceed"
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height"
         android:text="@string/save_user"
         android:textColor="@color/white"
         android:textSize="@dimen/button_text_size"
-        android:background="@color/colorAccent"
+        android:background="@color/colorAccentBlue"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
