@@ -41,20 +41,21 @@
     <string name="a_star">*</string>
     <string name="choose_option"> Choose Option </string>
 
+    <string name="blood_request_warning">Please fillup the form with care. Wrong information or malicious activity will result in account suspension.</string>
+
 
 
     <string-array name="blood_group">
         <item name="id">Blood Group</item>
-
-        <item name="id">A+</item>
-        <item name="title">O+</item>
-        <item name="title">O+</item>
-        <item name="title">B+</item>
-        <item name="title">AB+</item>
-        <item name="title">A-</item>
-        <item name="title">O-</item>
-        <item name="title">B-</item>
-        <item name="title">AB-</item>
+        <item>A+</item>
+        <item>O+</item>
+        <item>O+</item>
+        <item>B+</item>
+        <item>AB+</item>
+        <item>A-</item>
+        <item>O-</item>
+        <item>B-</item>
+        <item>AB-</item>
     </string-array>
 
     <string-array name="number_of_bags">
@@ -62,9 +63,8 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
-        <item>3</item>
         <item>4</item>
-        <item>5-</item>
+        <item>5</item>
     </string-array>
 
 
@@ -84,7 +84,7 @@
         <item>Dhaka</item>
         <item>Chittagong</item>
         <item>Rajshahi</item>
-        <item>Barisha</item>
+        <item>Barishal</item>
         <item>Sylhet</item>
         <item>Rangpur</item>
         <item>Jessore</item>
@@ -96,10 +96,6 @@
         <item>Stable</item>
         <item>Critical</item>
         <item>Very Critical</item>
-        <item>Delivery</item>
-        <item>Dengue</item>
-        <item>Thalassemia</item>
-        <item>Other</item>
     </string-array>
     <!-- etc. -->
     <array name="blood_attribute_list">

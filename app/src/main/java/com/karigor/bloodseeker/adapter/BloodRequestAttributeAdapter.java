@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.karigor.bloodseeker.R;
-import com.karigor.bloodseeker.data.model.BloodRequestAttribute;
+import com.karigor.bloodseeker.data.model.BloodRequestAttributeModel;
 
 import java.util.ArrayList;
 
@@ -23,14 +23,14 @@ import java.util.ArrayList;
 public class BloodRequestAttributeAdapter extends BaseAdapter {
 
     private Context context;
-    private ArrayList<BloodRequestAttribute> bloodRequestAttributes;
+    private ArrayList<BloodRequestAttributeModel> bloodRequestAttributeModels;
 
     private LayoutInflater layoutInflater;
 
 
-    public BloodRequestAttributeAdapter(Context context, ArrayList<BloodRequestAttribute> bloodRequestAttribute) {
+    public BloodRequestAttributeAdapter(Context context, ArrayList<BloodRequestAttributeModel> bloodRequestAttributeModel) {
         this.context = context;
-        this.bloodRequestAttributes = bloodRequestAttribute;
+        this.bloodRequestAttributeModels = bloodRequestAttributeModel;
     
         layoutInflater = LayoutInflater.from(context);
     }
@@ -40,15 +40,15 @@ public class BloodRequestAttributeAdapter extends BaseAdapter {
     
     @Override
     public int getCount() {
-        return bloodRequestAttributes.size();
+        return bloodRequestAttributeModels.size();
     }
     
     
     //********** Returns the item associated with the specified position in the data set *********//
     
     @Override
-    public BloodRequestAttribute getItem(int position) {
-        return bloodRequestAttributes.get(position);
+    public BloodRequestAttributeModel getItem(int position) {
+        return bloodRequestAttributeModels.get(position);
     }
     
     
@@ -67,7 +67,7 @@ public class BloodRequestAttributeAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data model based on Position
-        com.karigor.bloodseeker.data.model.BloodRequestAttribute attribute = bloodRequestAttributes.get(position);
+        BloodRequestAttributeModel attribute = bloodRequestAttributeModels.get(position);
     
     
         final ViewHolder holder;

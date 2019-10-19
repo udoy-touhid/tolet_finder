@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:custom="http://schemas.android.com/tools"
+<LinearLayout
+    android:padding="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/white">
 
@@ -14,38 +13,49 @@
         android:layout_height="0dip"
         android:layout_weight="1" >
 
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
 
+            <TextView
+                android:padding="5dp"
+                android:textColor="@color/colorRed"
+                android:text="@string/blood_request_warning"
+                android:textSize="15sp"
+                android:textAlignment="viewStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-                <com.karigor.bloodseeker.ui.CustomListView
+            <com.karigor.bloodseeker.ui.CustomListView
+                android:id="@+id/attributes_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:dividerHeight="5dp"
+                android:divider="@android:color/transparent" />
 
-                    android:id="@+id/attributes_list_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scrollbars="none"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:dividerHeight="5dp"
-                    android:divider="@android:color/transparent" />
-
+            <include layout="@layout/item_attribute_text_input"/>
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/product_cart_btn"
+        android:id="@+id/submit_request"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="ADD"
+        android:text="Request"
         android:textAllCaps="true"
         android:textSize="16sp"
-        android:textColor="@color/white"
-        android:background="@color/colorAccent"/>
+        android:textColor="@color/white"/>
 
 </LinearLayout>
