@@ -9,27 +9,19 @@
     <!--    <string name="invalid_username">Not a valid username</string>-->
     <!--    <string name="invalid_password">Password must be >5 characters</string>-->
     <!--    <string name="login_failed">"Login failed"</string>-->
-
     <string name="facebook_application_id">1279738428866125</string>
-
     <string name="facebook_app_id">1279738428866125</string>
     <string name="fb_login_protocol_scheme">fb1279738428866125</string>
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="full_name"> Full Name </string>
     <string name="first_name"> First Name </string>
     <string name="last_name"> Last Name </string>
     <string name="username"> Username/Email </string>
     <string name="email"> Email </string>
     <string name="email_address"> Email Address </string>
-
     <string name="save_user"> Save </string>
-
     <string name="verify_phone_number">Verify Phone Number</string>
-
-    <string name="sms_terms_of_service">By tapping “Verify Phone Number”, an SMS may be sent. Message &amp; data rates may apply.</string>
-
+    <string name="sms_terms_of_service">By tapping "Verify Phone Number", an SMS may be sent. Message &amp; data rates may apply.</string>
     <string name="blood_group_select_label">Select Blood Group</string>
     <string name="number_of_bags_select_label">Number Of Bags Required</string>
     <string name="label_district">District</string>
@@ -40,15 +32,47 @@
     <string name="patient_condition">Patient Condition</string>
     <string name="a_star">*</string>
     <string name="choose_option"> Choose Option </string>
-
     <string name="blood_request_warning">Please fillup the form with care. Wrong information or malicious activity will result in account suspension.</string>
+    <string name="fmt_num_ratings" translatable="false">(%d)</string>
+    <string name="all_restaurants">All Restaurants</string>
+    <string name="header_filters">Filter</string>
+    <string name="search">Search</string>
+    <string name="sort_by_rating">Sort by Rating</string>
+    <string name="sort_by_popularity">Sort by Popularity</string>
+    <string name="sort_by_price">Sort by Price</string>
+    <string name="sorted_by_rating">sorted by rating</string>
+    <string name="sorted_by_price">sorted by price</string>
+    <string name="sorted_by_popularity">sorted by popularity</string>
+    <string name="add_random_items">Add Random Items</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="divider_bullet">•</string>
+    <string name="apply">Apply</string>
+    <string name="cancel">Cancel</string>
+    <string name="message_no_results">Oops, couldn\'t find any results\nthat matched your filter</string>
+    <string name="message_no_reviews">Be the first to leave a review!</string>
+    <string name="hint_review">How was your experience?</string>
+    <string name="submit">Submit</string>
+    <string name="filter_add_review">Add review</string>
+    <string name="title_sign_in_error">Sign In Error</string>
+    <string name="message_no_network">No network connection.</string>
+    <string name="message_unknown">Unknown error.</string>
+    <string name="option_retry">Retry</string>
+    <string name="option_exit">Exit</string>
+    <string name="price_1">$</string>
+    <string name="price_2">$$</string>
+    <string name="price_3">$$$</string>
+    <string name="value_any_category">All food</string>
+    <string name="value_any_city">Anywhere</string>
+    <string name="value_any_price">Any price</string>
 
-
+    <string name="value_any_district">District</string>
+    <string name="value_any_blood_group">Blood Group</string>
+    <string name="value_any_patient_type">Patient Type</string>
+    <string name="value_any_patient_condition">Patient Condition</string>
 
     <string-array name="blood_group">
         <item name="id">Blood Group</item>
         <item>A+</item>
-        <item>O+</item>
         <item>O+</item>
         <item>B+</item>
         <item>AB+</item>
@@ -57,7 +81,6 @@
         <item>B-</item>
         <item>AB-</item>
     </string-array>
-
     <string-array name="number_of_bags">
         <item name="id">Number Of Bags</item>
         <item>1</item>
@@ -66,8 +89,6 @@
         <item>4</item>
         <item>5</item>
     </string-array>
-
-
     <string-array name="patient_type">
         <item name="id">Patient Type</item>
         <item>Operation</item>
@@ -77,10 +98,8 @@
         <item>Thalassemia</item>
         <item>Other</item>
     </string-array>
-
-
     <string-array name="district_list">
-        <item>District List</item>
+        <item>District</item>
         <item>Dhaka</item>
         <item>Chittagong</item>
         <item>Rajshahi</item>
@@ -89,8 +108,6 @@
         <item>Rangpur</item>
         <item>Jessore</item>
     </string-array>
-
-
     <string-array name="patient_condition">
         <item>Patient Condition</item>
         <item>Stable</item>
@@ -105,5 +122,83 @@
         <item>@array/patient_condition</item>
         <item>@array/district_list</item>
     </array>
-
+    <string-array name="categories">
+        <item>@string/value_any_category</item>
+        <item>Brunch</item>
+        <item>Burgers</item>
+        <item>Coffee</item>
+        <item>Deli</item>
+        <item>Dim Sum</item>
+        <item>Indian</item>
+        <item>Italian</item>
+        <item>Mediterranean</item>
+        <item>Mexican</item>
+        <item>Pizza</item>
+        <item>Ramen</item>
+        <item>Sushi</item>
+    </string-array>
+    <!-- 50 most populous cities in the US -->
+    <string-array name="cities">
+        <item>@string/value_any_city</item>
+        <item>Albuquerque</item>
+        <item>Arlington</item>
+        <item>Atlanta</item>
+        <item>Austin</item>
+        <item>Baltimore</item>
+        <item>Boston</item>
+        <item>Charlotte</item>
+        <item>Chicago</item>
+        <item>Cleveland</item>
+        <item>Colorado Springs</item>
+        <item>Columbus</item>
+        <item>Dallas</item>
+        <item>Denver</item>
+        <item>Detroit</item>
+        <item>El Paso</item>
+        <item>Fort Worth</item>
+        <item>Fresno</item>
+        <item>Houston</item>
+        <item>Indianapolis</item>
+        <item>Jacksonville</item>
+        <item>Kansas City</item>
+        <item>Las Vegas</item>
+        <item>Long Beach</item>
+        <item>Los Angeles</item>
+        <item>Louisville</item>
+        <item>Memphis</item>
+        <item>Mesa</item>
+        <item>Miami</item>
+        <item>Milwaukee</item>
+        <item>Nashville</item>
+        <item>New York</item>
+        <item>Oakland</item>
+        <item>Oklahoma</item>
+        <item>Omaha</item>
+        <item>Philadelphia</item>
+        <item>Phoenix</item>
+        <item>Portland</item>
+        <item>Raleigh</item>
+        <item>Sacramento</item>
+        <item>San Antonio</item>
+        <item>San Diego</item>
+        <item>San Francisco</item>
+        <item>San Jose</item>
+        <item>Tucson</item>
+        <item>Tulsa</item>
+        <item>Virginia Beach</item>
+        <item>Washington</item>
+    </string-array>
+    <!-- Price filters -->
+    <string-array name="prices">
+        <item>@string/value_any_price</item>
+        <item>@string/price_1</item>
+        <item>@string/price_2</item>
+        <item>@string/price_3</item>
+    </string-array>
+    <!-- Ways you can sort restaurants -->
+    <string-array name="sort_by">
+        <item>@string/sort_by_rating</item>
+        <item>@string/sort_by_popularity</item>
+        <item>@string/sort_by_price</item>
+    </string-array>
 </resources>

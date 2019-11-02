@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    android:src="@drawable/ic_email"
+                    app:srcCompat="@drawable/ic_email"
                     android:tint="@color/white"
                     app:backgroundTint="@color/colorAccentBlue"
                     app:rippleColor="@color/colorAccentBlue"

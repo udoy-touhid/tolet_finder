@@ -1,6 +1,7 @@
 package com.karigor.bloodseeker.ui.fragment;
 
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -17,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -26,12 +26,12 @@ import com.karigor.bloodseeker.R;
 import com.karigor.bloodseeker.Utility;
 import com.karigor.bloodseeker.adapter.BloodRequestAttributeAdapter;
 import com.karigor.bloodseeker.data.model.BloodRequestAttributeModel;
+import com.karigor.bloodseeker.data.model.BloodRequestModel;
+import com.karigor.bloodseeker.listeners.BloodRequestSubmitListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
-public class CreateBloodRequestFragment extends Fragment {
+public class AddRequestFragment extends Fragment  {
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -44,29 +44,40 @@ public class CreateBloodRequestFragment extends Fragment {
     private TextView attributeLabel;
     private EditText hopitalName;
     Button submit_btn;
-    BloodRequestAttributeAdapter bloodRequestAttributeAdapter;
+    private BloodRequestAttributeAdapter bloodRequestAttributeAdapter;
 
-    boolean all_input_valid;
+    BloodRequestSubmitListener bloodRequestSubmitListener;
+
+
+    private boolean all_input_valid;
 
     private View view;
-    ArrayList<BloodRequestAttributeModel> bloodRequestAttributeModelArrayList;
+    private ArrayList<BloodRequestAttributeModel> bloodRequestAttributeModelArrayList;
 
-    public static CreateBloodRequestFragment newInstance(String param1, String param2) {
-        CreateBloodRequestFragment fragment = new CreateBloodRequestFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    public static AddRequestFragment newInstance(String param1, String param2) {
+//        AddRequestFragment fragment = new AddRequestFragment();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        Context context = getContext();
+
+        if(context instanceof BloodRequestSubmitListener)
+            bloodRequestSubmitListener = (BloodRequestSubmitListener) context;
+        else
+            bloodRequestSubmitListener = null;
 
         all_input_valid = false;
     }
@@ -76,17 +87,17 @@ public class CreateBloodRequestFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_new_blood_request, container, false);
-        bloodAttributeListView = view.findViewById(R.id.attributes_list_view);
 
+        bloodAttributeListView = view.findViewById(R.id.attributes_list_view);
         attributeLabel = view.findViewById(R.id.attribute_name);
         attributeLabel.setText(getResources().getString(R.string.hospital_name));
-
         hopitalName = view.findViewById(R.id.attribute_value);
 
         setUpList();
         setUpRequestAttributeList();
         setUpSubmit();
         setHospitalNameWatcher();
+
         return view;
     }
 
@@ -122,13 +133,18 @@ public class CreateBloodRequestFragment extends Fragment {
 
                         if(isFormValid(true)){
 
-                            Toast.makeText(
-                                    getContext(),
-                                    "Opening Newsfeed",
-                                    Toast.LENGTH_SHORT)
-                                    .show();
+                            BloodRequestModel bloodRequestModel = new BloodRequestModel();
+
+                            bloodRequestModel.setBlood_group(bloodRequestAttributeModelArrayList.get(0).getSelected_option());
+                            bloodRequestModel.setBags_needed(Integer.parseInt(bloodRequestAttributeModelArrayList.get(1).getSelected_option()));
+                            bloodRequestModel.setPatientType(bloodRequestAttributeModelArrayList.get(2).getSelected_option());
+                            bloodRequestModel.setPatient_condition(bloodRequestAttributeModelArrayList.get(3).getSelected_option());
+                            bloodRequestModel.setDistrict(bloodRequestAttributeModelArrayList.get(4).getSelected_option());
+                            bloodRequestModel.setHospital_name(hopitalName.getText().toString());
 
                             //save to cloud and precess to newsfeed
+                            if(bloodRequestSubmitListener != null)
+                                bloodRequestSubmitListener.addBloodRequest(bloodRequestModel);
                         }
                     }
                 }
@@ -156,10 +172,10 @@ public class CreateBloodRequestFragment extends Fragment {
 
         Resources res = getResources();
         TypedArray ta = res.obtainTypedArray(R.array.blood_attribute_list);
-        int n = ta.length();
-        String[][] array = new String[n][];
+        int length = ta.length();
+        String[][] array = new String[length][];
 
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < length; ++i) {
             int id = ta.getResourceId(i, 0);
             if (id > 0) {
 
@@ -199,8 +215,6 @@ public class CreateBloodRequestFragment extends Fragment {
         final TextView attribute_value = (TextView) view.findViewById(R.id.attribute_value);
 
         final BloodRequestAttributeModel productsAttribute = bloodRequestAttributeModelArrayList.get(blood_atttribute_listPosition);
-
-
 
         ArrayList<String> attributeValues = productsAttribute.getOptions();
 
@@ -254,19 +268,8 @@ public class CreateBloodRequestFragment extends Fragment {
     }
 
 
-
-
-
     private boolean isFormValid(boolean should_show_toast){
 
-
-        Collections.sort(bloodRequestAttributeModelArrayList, new Comparator<BloodRequestAttributeModel>() {
-
-            public int compare(BloodRequestAttributeModel o1, BloodRequestAttributeModel o2) {
-                // compare two instance of `Score` and return `int` as result.
-                return o2.getName().compareTo(o1.getName());
-            }
-        });
 
         boolean flag = true;
         String msg = "Error";
@@ -294,8 +297,8 @@ public class CreateBloodRequestFragment extends Fragment {
 
         submitButtonToggle(flag);
         return flag;
-
     }
+
 
 }
 

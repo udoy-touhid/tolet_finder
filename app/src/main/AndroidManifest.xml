@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeBackup">
-        <activity android:name=".PhoneNumberActivity"></activity>
+        <activity android:name=".ui.UserActivity"></activity>
+
+        <activity android:name=".PhoneNumberActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -45,6 +47,10 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.NewsFeedActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

@@ -65,6 +65,8 @@ public class UserProfileFragment extends Fragment {
         mFirebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = mFirebaseAuth.getCurrentUser();
 
+//        Intent intent = new Intent(getActivity(), NewsFeedActivity.class);
+//        startActivity(intent);
     }
 
     @Override
@@ -120,7 +122,7 @@ public class UserProfileFragment extends Fragment {
 
     private void proceedToCreateRequest() {
 
-        Fragment fragment = new CreateBloodRequestFragment();
+        Fragment fragment = new AddRequestFragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.main_fragment, fragment)

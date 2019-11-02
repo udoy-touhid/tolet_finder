@@ -10,6 +10,10 @@
     <color name="colorTextDisabled">#7A7A7A</color>
 
 
+    <color name="greyPrimary">#DE000000</color>
+    <color name="greySecondary">#8B000000</color>
+    <color name="greyDisabled">#61000000</color>
+
 
     <color name="textColorPrimaryDark">#757575</color>
     <color name="textColorPrimaryLight">#bfbfbf</color>

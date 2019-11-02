@@ -11,15 +11,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.karigor.bloodseeker.R;
-import com.karigor.bloodseeker.ui.fragment.UserProfileFragment;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
         initAuth();
-        //startActivity(new Intent(this, PhoneNumberActivity.class));
+        startActivity(new Intent(this, NewsFeedActivity.class));
     }
 
 
@@ -62,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+                //user.getPhoneNumber();
                 if (user != null) {
                     Log.w(TAG,"signed in");
                     // User is signed in
@@ -137,13 +135,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleSignedInUser() {
 
-        Fragment fragment = new UserProfileFragment();
-        //fragment.setArguments(bundle);
-        fragmentManager.beginTransaction()
-                .replace(R.id.main_fragment, fragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .addToBackStack(null)
-                .commitAllowingStateLoss();
+
+        Intent intent = new Intent(MainActivity.this,UserActivity.class);
+        startActivity(intent);
     }
     @Override
     public void onBackPressed() {
