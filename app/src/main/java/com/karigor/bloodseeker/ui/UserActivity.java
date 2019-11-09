@@ -1,7 +1,7 @@
 package com.karigor.bloodseeker.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -20,6 +21,9 @@ import com.google.firebase.firestore.Query;
 import com.karigor.bloodseeker.R;
 import com.karigor.bloodseeker.data.model.BloodRequestModel;
 import com.karigor.bloodseeker.listeners.BloodRequestSubmitListener;
+import com.karigor.bloodseeker.ui.fragment.AddRequestFragment;
+import com.karigor.bloodseeker.ui.fragment.NewsFeedFragment;
+import com.karigor.bloodseeker.ui.fragment.PreferenceFragment;
 import com.karigor.bloodseeker.ui.fragment.UserProfileFragment;
 
 public class UserActivity extends AppCompatActivity implements BloodRequestSubmitListener {
@@ -37,27 +41,77 @@ public class UserActivity extends AppCompatActivity implements BloodRequestSubmi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        // Enable Firestore logging
-        FirebaseFirestore.setLoggingEnabled(true);
+        initNavigation();
 
+        // Enable Firestore logging
+        //FirebaseFirestore.setLoggingEnabled(true);
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
-
         requestCollection = mFirestore.collection(BloodRequestModel.COLLECTION_BLOOD_REQUESTS);
-
-
-
         fragmentManager = getSupportFragmentManager();
-        initBloodRequestFragment();
+
+        openNewsFeedFragment();
     }
 
-    private void initBloodRequestFragment() {
+    private void initNavigation() {
+
+        BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
+
+        BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+                = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+
+                    case R.id.add_request:
+                        openAddRequestFragment();
+                        return true;
+
+
+                    case R.id.feed:
+                        openNewsFeedFragment();
+                        return true;
+
+                    case R.id.notifications:
+                        openBloodRequestFragment();
+                        return true;
+
+                    case R.id.profile:
+                        openPreferenceFragment();
+                        return true;
+
+                }
+
+                return false;
+            }
+        };
+
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    private void openBloodRequestFragment() {
 
 
         Fragment fragment = new UserProfileFragment();
+        //fragment.setArguments(bundle);
+        fragmentManager.beginTransaction()
+                .replace(R.id.main_fragment, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .addToBackStack(null)
+                .commitAllowingStateLoss();
+
+    }
+
+    private void openAddRequestFragment() {
+
+
+        Fragment fragment = new AddRequestFragment();
         //fragment.setArguments(bundle);
         fragmentManager.beginTransaction()
                 .replace(R.id.main_fragment, fragment)
@@ -116,15 +170,27 @@ public class UserActivity extends AppCompatActivity implements BloodRequestSubmi
 
     private void openNewsFeedFragment() {
 
-//        Fragment fragment = new NewsFeedFragment();
-//        //fragment.setArguments(bundle);
-//        fragmentManager.beginTransaction()
-//                .replace(R.id.main_fragment, fragment)
-//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-//                .addToBackStack(null)
-//                .commitAllowingStateLoss();
+        Fragment fragment = new NewsFeedFragment();
+        //fragment.setArguments(bundle);
+        fragmentManager.beginTransaction()
+                .replace(R.id.main_fragment, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .addToBackStack(null)
+                .commitAllowingStateLoss();
 
-        startActivity(new Intent(this,NewsFeedActivity.class));
+    }
+
+
+    private void openPreferenceFragment() {
+
+        Fragment fragment = new PreferenceFragment();
+        //fragment.setArguments(bundle);
+        fragmentManager.beginTransaction()
+                .replace(R.id.main_fragment, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .addToBackStack(null)
+                .commitAllowingStateLoss();
+
     }
 
 }

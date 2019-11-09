@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
         initAuth();
-        startActivity(new Intent(this, NewsFeedActivity.class));
+       //startActivity(new Intent(this, NewsFeedActivity.class));
     }
 
 

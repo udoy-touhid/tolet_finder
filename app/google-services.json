@@ -8,6 +8,72 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:675919602915:android:41d4988ad71659daded1d6",
+        "android_client_info": {
+          "package_name": "co.touhid.ebooktemplate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675919602915-d058sdfmcobhv65nlhchoi3phdvpq8q4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.touhid.ebooktemplate",
+            "certificate_hash": "b249ecef00ced798754f3128a296c4fb41e594f6"
+          }
+        },
+        {
+          "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBayWtcjDMz1-ijmIwuPh4oVyFJ6vOl7Wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675919602915:android:449324df54d83e80ded1d6",
+        "android_client_info": {
+          "package_name": "co.touhid.vr_keyboard_essentials"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBayWtcjDMz1-ijmIwuPh4oVyFJ6vOl7Wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:675919602915:android:2d1de7c86126f40dded1d6",
         "android_client_info": {
           "package_name": "com.firebase.uidemo"
@@ -44,6 +110,51 @@
       },
       "oauth_client": [
         {
+          "client_id": "675919602915-7626f56s1gfdqbveg133afcdeu4ljkdv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.firebase.example.fireeats",
+            "certificate_hash": "b249ecef00ced798754f3128a296c4fb41e594f6"
+          }
+        },
+        {
+          "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBayWtcjDMz1-ijmIwuPh4oVyFJ6vOl7Wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675919602915:android:c8693489778a92added1d6",
+        "android_client_info": {
+          "package_name": "com.google.firebase.quickstart.firebasestorage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675919602915-8n1a4u41amis606u4lra4qurp4dhp30i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.firebase.quickstart.firebasestorage",
+            "certificate_hash": "b249ecef00ced798754f3128a296c4fb41e594f6"
+          }
+        },
+        {
           "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -69,6 +180,43 @@
         "mobilesdk_app_id": "1:675919602915:android:fd3ebf85f95b5e10ded1d6",
         "android_client_info": {
           "package_name": "com.karigor.bloodseeker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675919602915-fr95m9vbbbpd778qo00f3cr0vv4q8t83.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.karigor.bloodseeker",
+            "certificate_hash": "b249ecef00ced798754f3128a296c4fb41e594f6"
+          }
+        },
+        {
+          "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBayWtcjDMz1-ijmIwuPh4oVyFJ6vOl7Wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675919602915-1tbkl8nrov71d0q5pr0v0skm2v6ul1eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675919602915:android:11921e5159adcb6aded1d6",
+        "android_client_info": {
+          "package_name": "dev.karigor.to_let"
         }
       },
       "oauth_client": [

@@ -2,69 +2,228 @@ package com.karigor.bloodseeker.ui.fragment;
 
 
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.firestore.DocumentReference;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.karigor.bloodseeker.R;
+import com.karigor.bloodseeker.adapter.PostAdapter;
+import com.karigor.bloodseeker.data.model.BloodRequestModel;
+import com.karigor.bloodseeker.ui.FilterDialogFragment;
+import com.karigor.bloodseeker.ui.Filters;
+import com.karigor.bloodseeker.viewmodel.NewsfeedActivityViewModel;
 
-public class NewsFeedFragment extends Fragment {
+public class NewsFeedFragment extends Fragment  implements
+        FilterDialogFragment.FilterListener,
+        PostAdapter.OnPostSelectedListener, View.OnClickListener  {
 
+
+    private static final int LIMIT = 50;
     private FirebaseFirestore mFirestore;
     private Query mQuery;
-    private DocumentReference mUserRef;
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private Toolbar mToolbar;
+    private TextView mCurrentSearchView;
+    private TextView mCurrentSortByView;
+    private RecyclerView mPostsRecycler;
+    private ViewGroup mEmptyView;
 
-    private String mParam1;
-    private String mParam2;
+    private FilterDialogFragment mFilterDialog;
+    private PostAdapter mAdapter;
+
+    private NewsfeedActivityViewModel mViewModel;
 
 
-    public NewsFeedFragment() {
-        // Required empty public constructor
-    }
+    public NewsFeedFragment() { }
 
-
-    public static NewsFeedFragment newInstance(String param1, String param2) {
-        NewsFeedFragment fragment = new NewsFeedFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-        initFireStore();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news_feed, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_news_feed, container, false);
+        init(rootView);
+
+        return rootView;
     }
 
-    private void initFireStore() {
+    private void init(final View view) {
 
-        // Initialize Firestore
+        mToolbar = view.findViewById(R.id.toolbar);
+        mCurrentSearchView = view.findViewById(R.id.textCurrentSearch);
+        mCurrentSortByView = view.findViewById(R.id.textCurrentSortBy);
+        mPostsRecycler = view.findViewById(R.id.recyclerPosts);
+        mEmptyView = view.findViewById(R.id.viewEmpty);
+
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+
+        view.findViewById(R.id.filterBar).setOnClickListener(this);
+        view.findViewById(R.id.buttonClearFilter).setOnClickListener(this);
+
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        mPostsRecycler = view.findViewById(R.id.recyclerPosts);
+
+        // View model
+        mViewModel = ViewModelProviders.of(this).get(NewsfeedActivityViewModel.class);
+
+        // Enable Firestore logging
+        FirebaseFirestore.setLoggingEnabled(true);
+
+        // Firestore
         mFirestore = FirebaseFirestore.getInstance();
 
-        // Get the 50 highest rated restaurants
-        mUserRef = mFirestore.collection("Users").document("");
+        // Get ${LIMIT} restaurants
+        mQuery = mFirestore.collection(BloodRequestModel.COLLECTION_BLOOD_REQUESTS)
+                .limit(LIMIT);
 
+        // RecyclerView
+        mAdapter = new PostAdapter(mQuery, this,firebaseUser.getUid()) {
+            @Override
+            protected void onDataChanged() {
+                // Show/hide content if the query returns empty.
+                if (getItemCount() == 0) {
+                    mPostsRecycler.setVisibility(View.GONE);
+                    mEmptyView.setVisibility(View.VISIBLE);
+                } else {
+                    mPostsRecycler.setVisibility(View.VISIBLE);
+                    mEmptyView.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            protected void onError(FirebaseFirestoreException e) {
+                // Show a snackbar on errors
+                Snackbar.make(view.findViewById(android.R.id.content),
+                        "Error: check logs for info.", Snackbar.LENGTH_LONG).show();
+            }
+        };
+
+        mPostsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        mPostsRecycler.setAdapter(mAdapter);
+
+        // Filter Dialog
+        mFilterDialog = new FilterDialogFragment(this);
     }
 
+    @Override
+    public void onStart() {
+
+        super.onStart();
+
+        // Apply filters
+        onFilter(mViewModel.getFilters());
+
+        // Start listening for Firestore updates
+        if (mAdapter != null) {
+            mAdapter.startListening();
+        }
+    }
+
+    @Override
+    public void onStop() {
+
+        super.onStop();
+        if (mAdapter != null) {
+            mAdapter.stopListening();
+        }
+    }
+
+    @Override
+    public void onFilter(Filters filters) {
+        Toast.makeText(getContext(), "on filter" , Toast.LENGTH_SHORT).show();
+        // Construct query basic query
+
+        String fileter = "";
+        Query query = mFirestore.collection(BloodRequestModel.COLLECTION_BLOOD_REQUESTS);
+
+        // Category (equality filter)
+        if (filters.hasPatientType()) {
+            fileter += filters.getPatientType();
+            query = query.whereEqualTo(BloodRequestModel.FIELD_PATIENT_TYPE, filters.getPatientType());
+        }
+
+        // City (equality filter)
+        if (filters.hasDistrict()) {
+            fileter += filters.getDistrict();
+
+            query = query.whereEqualTo(BloodRequestModel.FIELD_DISTRICT, filters.getDistrict());
+        }
+
+        // Price (equality filter)
+        if (filters.hasBloodGroup()) {
+            fileter += filters.getBlood_group();
+
+            query = query.whereEqualTo(BloodRequestModel.FIELD_BLOOD_GROUP, filters.getBlood_group());
+        }
+
+        // Sort by (orderBy with direction)
+        if (filters.hasPatientCondition()) {
+            fileter += filters.getPatient_condition();
+
+            query = query.whereEqualTo(BloodRequestModel.FIELD_PATIENT_CONDITION, filters.getPatient_condition());
+        }
+
+        Log.w("query on fileter",fileter);
+        // Limit items
+        query = query.limit(LIMIT);
+
+        // Update the query
+        mAdapter.setQuery(query);
+
+        // Set header
+        mCurrentSearchView.setText(Html.fromHtml(filters.getSearchDescription(getContext())));
+        //mCurrentSortByView.setText(filters.getOrderDescription(this));
+
+        // Save filters
+        mViewModel.setFilters(filters);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.filterBar:
+                onFilterClicked();
+                break;
+            case R.id.buttonClearFilter:
+                onClearFilterClicked();
+                break;
+        }
+    }
+    public void onFilterClicked() {
+        // Show the dialog containing filter options
+        mFilterDialog.show(getFragmentManager(), FilterDialogFragment.TAG);
+    }
+
+    public void onClearFilterClicked() {
+        mFilterDialog.resetFilters();
+
+        onFilter(Filters.getDefault());
+    }
+
+
+    @Override
+    public void onRestaurantSelected(DocumentSnapshot restaurant) {
+        Toast.makeText(getContext(), "details", Toast.LENGTH_SHORT).show();
+
+    }
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="notifications_category"
+        app:title="Notifications">
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="request_notifications"
+            app:title="Allow Push Messages?"
+            app:summary="Get notification when matching request found"/>
+        <ListPreference
+            app:entries="@array/resting_months"
+            app:entryValues="@array/resting_months"
+            app:defaultValue="4"
+            app:key="months_before_notification"
+            app:title="Resting Period"
+            app:summary="Waiting Period To Get Notification After Last Donation"/>
+
+<!--        distance perefernce-->
+<!--        <ListPreference-->
+<!--            app:entries="@array/resting_months"-->
+<!--            app:entryValues="@array/resting_months"-->
+<!--            app:defaultValue="4"-->
+<!--            app:key="months_before_notification"-->
+<!--            app:summary="Resting Period"-->
+<!--            app:title="Waiting Period To Get Notification After Last Donation"/>-->
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="profile"
+        app:title="Profile">
+
+        <ListPreference
+            app:entries="@array/blood_group"
+            app:entryValues="@array/blood_group"
+            app:key="blood_group_pref"
+            app:title="Blood Group"
+            app:summary="Select Your Blood Group"/>
+
+
+        <MultiSelectListPreference
+            app:entries="@array/district_list"
+            app:entryValues="@array/district_list"
+            app:key="area_pref"
+            app:title="Select Locations"
+            app:summary="Areas You want to donate blood"/>
+
+
+        <Preference
+            app:key="feedback"
+            app:summary="Report technical issues or suggest new features"
+            app:title="Send feedback"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -2,6 +2,7 @@ package com.karigor.bloodseeker.ui;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
 
     public static final String TAG = "FilterDialog";
 
-    interface FilterListener {
+    public interface FilterListener {
 
         void onFilter(Filters filters);
 
@@ -34,6 +35,14 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
     private Spinner mBloodGroupSpinner;
 
     private FilterListener mFilterListener;
+
+
+    public FilterDialogFragment(){ }
+
+    public FilterDialogFragment(FilterListener filterListener){
+
+        this.mFilterListener = filterListener;
+    }
 
     @Nullable
     @Override
@@ -60,6 +69,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         if (context instanceof FilterListener) {
             mFilterListener = (FilterListener) context;
         }
+        else Log.e(FilterDialogFragment.TAG,"onAttach context is not an instance of fliter");
     }
 
     @Override

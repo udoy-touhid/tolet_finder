@@ -122,83 +122,12 @@
         <item>@array/patient_condition</item>
         <item>@array/district_list</item>
     </array>
-    <string-array name="categories">
-        <item>@string/value_any_category</item>
-        <item>Brunch</item>
-        <item>Burgers</item>
-        <item>Coffee</item>
-        <item>Deli</item>
-        <item>Dim Sum</item>
-        <item>Indian</item>
-        <item>Italian</item>
-        <item>Mediterranean</item>
-        <item>Mexican</item>
-        <item>Pizza</item>
-        <item>Ramen</item>
-        <item>Sushi</item>
+    <string-array name="resting_months">
+        <item>4 Months</item>
+        <item>6 Months</item>
+        <item>8 Months</item>
+        <item>10 Months</item>
+        <item>12 Months</item>
     </string-array>
-    <!-- 50 most populous cities in the US -->
-    <string-array name="cities">
-        <item>@string/value_any_city</item>
-        <item>Albuquerque</item>
-        <item>Arlington</item>
-        <item>Atlanta</item>
-        <item>Austin</item>
-        <item>Baltimore</item>
-        <item>Boston</item>
-        <item>Charlotte</item>
-        <item>Chicago</item>
-        <item>Cleveland</item>
-        <item>Colorado Springs</item>
-        <item>Columbus</item>
-        <item>Dallas</item>
-        <item>Denver</item>
-        <item>Detroit</item>
-        <item>El Paso</item>
-        <item>Fort Worth</item>
-        <item>Fresno</item>
-        <item>Houston</item>
-        <item>Indianapolis</item>
-        <item>Jacksonville</item>
-        <item>Kansas City</item>
-        <item>Las Vegas</item>
-        <item>Long Beach</item>
-        <item>Los Angeles</item>
-        <item>Louisville</item>
-        <item>Memphis</item>
-        <item>Mesa</item>
-        <item>Miami</item>
-        <item>Milwaukee</item>
-        <item>Nashville</item>
-        <item>New York</item>
-        <item>Oakland</item>
-        <item>Oklahoma</item>
-        <item>Omaha</item>
-        <item>Philadelphia</item>
-        <item>Phoenix</item>
-        <item>Portland</item>
-        <item>Raleigh</item>
-        <item>Sacramento</item>
-        <item>San Antonio</item>
-        <item>San Diego</item>
-        <item>San Francisco</item>
-        <item>San Jose</item>
-        <item>Tucson</item>
-        <item>Tulsa</item>
-        <item>Virginia Beach</item>
-        <item>Washington</item>
-    </string-array>
-    <!-- Price filters -->
-    <string-array name="prices">
-        <item>@string/value_any_price</item>
-        <item>@string/price_1</item>
-        <item>@string/price_2</item>
-        <item>@string/price_3</item>
-    </string-array>
-    <!-- Ways you can sort restaurants -->
-    <string-array name="sort_by">
-        <item>@string/sort_by_rating</item>
-        <item>@string/sort_by_popularity</item>
-        <item>@string/sort_by_price</item>
-    </string-array>
+
 </resources>
