@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BloodSeeker</string>
+    <string name="app_name">Tolet Seeker</string>
     <!-- Strings related to login -->
     <!--    <string name="prompt_email">Email</string>-->
     <!--    <string name="prompt_password">Password</string>-->
@@ -69,6 +69,33 @@
     <string name="value_any_blood_group">Blood Group</string>
     <string name="value_any_patient_type">Patient Type</string>
     <string name="value_any_patient_condition">Patient Condition</string>
+    <string name="action_newsfeed">actionNewsfeed</string>
+
+
+    <string-array name="district_list">
+        <item>District</item>
+        <item>Dhaka</item>
+        <item>Chittagong</item>
+        <item>Rajshahi</item>
+        <item>Barishal</item>
+        <item>Sylhet</item>
+        <item>Rangpur</item>
+        <item>Jessore</item>
+    </string-array>
+
+    <integer-array name="room_number">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </integer-array>
+
 
     <string-array name="blood_group">
         <item name="id">Blood Group</item>
@@ -89,6 +116,7 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+
     <string-array name="patient_type">
         <item name="id">Patient Type</item>
         <item>Operation</item>
@@ -98,36 +126,39 @@
         <item>Thalassemia</item>
         <item>Other</item>
     </string-array>
-    <string-array name="district_list">
-        <item>District</item>
-        <item>Dhaka</item>
-        <item>Chittagong</item>
-        <item>Rajshahi</item>
-        <item>Barishal</item>
-        <item>Sylhet</item>
-        <item>Rangpur</item>
-        <item>Jessore</item>
-    </string-array>
     <string-array name="patient_condition">
         <item>Patient Condition</item>
         <item>Stable</item>
         <item>Critical</item>
         <item>Very Critical</item>
     </string-array>
-    <!-- etc. -->
-    <array name="blood_attribute_list">
-        <item>@array/blood_group</item>
-        <item>@array/number_of_bags</item>
-        <item>@array/patient_type</item>
-        <item>@array/patient_condition</item>
-        <item>@array/district_list</item>
-    </array>
-    <string-array name="resting_months">
-        <item>4 Months</item>
-        <item>6 Months</item>
-        <item>8 Months</item>
-        <item>10 Months</item>
-        <item>12 Months</item>
+
+
+
+    <string name="room_number_label">Number of Rooms</string>
+    <string name="lift_status_label">Lift Available?</string>
+    <string name="gas_status_label">Gas Line Available?</string>
+    <string name="total_area_status_label">Area (Square Feet)</string>
+    <string name="floor_status_label">Floor Number</string>
+    <string name="security_guard_status_label">Security Guard Available?</string>
+    <string name="parking_status_label">Parking Available?</string>
+    <string name="renting_status_label">House Rent</string>
+    <string name="district_status_label">District</string>
+    <string name="short_description_status_label">Short Description</string>
+
+
+    <string-array name="request_attributes">
+        <item>@string/room_number_label</item>
+        <item>@string/lift_status_label</item>
+        <item>@string/gas_status_label</item>
+        <item>@string/total_area_status_label</item>
+        <item>@string/floor_status_label</item>
+        <item>@string/security_guard_status_label</item>
+        <item>@string/parking_status_label</item>
+        <item>@string/renting_status_label</item>
+        <item>@string/district_status_label</item>
+        <item>@string/short_description_status_label</item>
     </string-array>
+
 
 </resources>

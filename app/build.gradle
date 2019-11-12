@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.karigor.bloodseeker"
+        applicationId "dev.karigor.to_let"
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
@@ -18,6 +18,22 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
     }
+
+//    flavorDimensions "regular"
+//
+//    productFlavors {
+//
+//        blood {
+//            dimension "regular"
+//        }
+//        to_let{
+//            dimension "regular"
+//            versionCode 1
+//            versionName "1.0"
+//            applicationId "com.karigor.tolet_seeker"
+//        }
+//    }
+
     buildTypes {
         release {
             minifyEnabled false

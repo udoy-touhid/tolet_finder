@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <com.karigor.bloodseeker.ui.CustomListView
+            <com.karigor.tolet_seeker.ui.CustomListView
                 android:id="@+id/attributes_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

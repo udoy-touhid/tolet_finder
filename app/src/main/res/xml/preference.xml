@@ -11,13 +11,13 @@
             app:key="request_notifications"
             app:title="Allow Push Messages?"
             app:summary="Get notification when matching request found"/>
-        <ListPreference
-            app:entries="@array/resting_months"
-            app:entryValues="@array/resting_months"
-            app:defaultValue="4"
-            app:key="months_before_notification"
-            app:title="Resting Period"
-            app:summary="Waiting Period To Get Notification After Last Donation"/>
+<!--        <ListPreference-->
+<!--            app:entries="@array/resting_months"-->
+<!--            app:entryValues="@array/resting_months"-->
+<!--            app:defaultValue="4"-->
+<!--            app:key="months_before_notification"-->
+<!--            app:title="Resting Period"-->
+<!--            app:summary="Waiting Period To Get Notification After Last Donation"/>-->
 
 <!--        distance perefernce-->
 <!--        <ListPreference-->
