@@ -8,15 +8,12 @@ package com.karigor.tolet_seeker.data.model;
 public class HouseSwitchAttribute {
 
     String label;
-
     boolean value;
-
 
     public HouseSwitchAttribute(String label, boolean value) {
         this.label = label;
         this.value = value;
     }
-
 
     public String getLabel() {
         return label;

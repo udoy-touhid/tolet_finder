@@ -66,7 +66,6 @@ public class NewsFeedFragment extends Fragment implements
         if(context instanceof NewsfeedListener)
             newsfeedListener = (NewsfeedListener) context;
 
-
     }
 
 

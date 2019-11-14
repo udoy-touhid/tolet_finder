@@ -50,7 +50,6 @@ public class UserActivity extends AppCompatActivity implements BloodRequestSubmi
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-
         initNavigation();
 
         // Enable Firestore logging

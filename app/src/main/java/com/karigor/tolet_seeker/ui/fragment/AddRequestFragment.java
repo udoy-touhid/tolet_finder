@@ -30,7 +30,7 @@ import java.util.Arrays;
 
 public class AddRequestFragment extends Fragment implements RequestAttributeAdapter.OnClickListener {
 
-    private RecyclerView attributeListView;
+    private RecyclerView attributeRecyclerView;
    //private TextView attributeLabel;
     //private EditText hopitalName;
     private Button submit_btn;
@@ -66,7 +66,7 @@ public class AddRequestFragment extends Fragment implements RequestAttributeAdap
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_new_request, container, false);
 
-        attributeListView = view.findViewById(R.id.recycler_view);
+        attributeRecyclerView = view.findViewById(R.id.recycler_view);
         setUpList();
         setUpRequestAttributeList();
         setUpSubmit();
@@ -172,9 +172,9 @@ public class AddRequestFragment extends Fragment implements RequestAttributeAdap
                 this,
                 houseSwitchAttributeArrayList,houseTextAttributeArrayList);
 
-        attributeListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        attributeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        attributeListView.setAdapter(requestAttributeAdapter);
+        attributeRecyclerView.setAdapter(requestAttributeAdapter);
 
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -74,11 +75,27 @@ public class RequestAttributeAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-
         if(holder instanceof SwitchViewHolder){
 
-            ((SwitchViewHolder) holder).label.setText(houseSwitchAttributeList.get(position).getLabel());
+            final SwitchViewHolder switchViewHolder = (SwitchViewHolder) holder;
+            switchViewHolder.label.setText(houseSwitchAttributeList.get(position).getLabel());
            // Log.e("pos: "+position,houseSwitchAttributeList.get(position).getLabel());
+            switchViewHolder.switchCompat.setOnCheckedChangeListener(
+                    new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                            if(isChecked) {
+                                switchViewHolder.switchLabel.setText(R.string.switch_label_yes);
+                            }
+                            else {
+
+                                switchViewHolder.switchLabel.setText(R.string.switch_label_no);
+
+                            }
+                        }
+                    }
+            );
 
         }
         else if(holder instanceof ListViewHolder){
@@ -118,10 +135,6 @@ public class RequestAttributeAdapter extends RecyclerView.Adapter<RecyclerView.V
 
 
                 }
-//                else
-//                    listViewHolder.editText.setInputType(InputType.TYPE_CLASS_NUMBER);
-
-                //listViewHolder.editText.setEnabled(true);
             }
         }
     }
@@ -143,13 +156,14 @@ public class RequestAttributeAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     private class SwitchViewHolder extends RecyclerView.ViewHolder {
-        private final TextView label;
+        private final TextView label,switchLabel;
         private final SwitchCompat switchCompat;
 
         private SwitchViewHolder(View itemView) {
             super(itemView);
             label = itemView.findViewById(R.id.label);
             switchCompat = itemView.findViewById(R.id.switchWidget);
+            switchLabel = itemView.findViewById(R.id.switch_label);
         }
     }
 

@@ -71,7 +71,8 @@
     <string name="value_any_patient_condition">Patient Condition</string>
     <string name="action_newsfeed">actionNewsfeed</string>
 
-
+    <string name="switch_label_yes">Yes</string>
+    <string name="switch_label_no">No</string>
     <string-array name="district_list">
         <item>District</item>
         <item>Dhaka</item>
