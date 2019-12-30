@@ -18,25 +18,24 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.karigor.tolet_seeker.R;
-import com.karigor.tolet_seeker.data.model.BloodRequestModel;
-import com.karigor.tolet_seeker.listeners.BloodRequestSubmitListener;
+import com.karigor.tolet_seeker.data.model.HouseModel;
+import com.karigor.tolet_seeker.listeners.RentSubmitListener;
 import com.karigor.tolet_seeker.ui.fragment.AddRequestFragment;
 import com.karigor.tolet_seeker.ui.fragment.NewsFeedFragment;
 import com.karigor.tolet_seeker.ui.fragment.PreferenceFragment;
 import com.karigor.tolet_seeker.ui.fragment.UserProfileFragment;
 
-public class UserActivity extends AppCompatActivity implements BloodRequestSubmitListener, NewsFeedFragment.NewsfeedListener {
+public class UserActivity extends AppCompatActivity implements RentSubmitListener, NewsFeedFragment.NewsfeedListener {
 
     private FragmentManager fragmentManager;
     private FirebaseAuth mFirebaseAuth;
     private String userName;
     private String email;
-    private String contact_number;
+    private String contactNumber;
     private String userId;
 
     private FirebaseFirestore mFirestore;
@@ -50,22 +49,30 @@ public class UserActivity extends AppCompatActivity implements BloodRequestSubmi
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        fragmentManager = getSupportFragmentManager();
         initNavigation();
 
         // Enable Firestore logging
         // FirebaseFirestore.setLoggingEnabled(true);
         // Firestore
+        initFirebase();
+
+        openNewsFeedFragment();
+    }
+
+
+    void initFirebase(){
+
         if(FirebaseAuth.getInstance().getCurrentUser()==null)
         {
             startActivity(new Intent(this,MainActivity.class));
             finish();
         }
         mFirestore = FirebaseFirestore.getInstance();
-        requestCollection = mFirestore.collection(BloodRequestModel.COLLECTION_BLOOD_REQUESTS);
-        fragmentManager = getSupportFragmentManager();
-
-        openNewsFeedFragment();
+        requestCollection = mFirestore.collection(HouseModel.COLLECTION_RENT_REQUESTS);
     }
+
 
     private void initNavigation() {
 
@@ -141,51 +148,34 @@ public class UserActivity extends AppCompatActivity implements BloodRequestSubmi
 
     }
 
+
     @Override
-    public String addBloodRequest(BloodRequestModel bloodRequestModel) {
+    public String addHouseRequest(HouseModel houseAttributeRequest) {
 
-        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        requestCollection.document().set(houseAttributeRequest)
+                .addOnSuccessListener(
+                        new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
 
-        String response = null;
-
-        if(firebaseUser != null) {
-
-            userName = firebaseUser.getDisplayName();
-            email = firebaseUser.getEmail();
-            contact_number = firebaseUser.getPhoneNumber();
-            userId = firebaseUser.getUid();
-
-            bloodRequestModel.setUser_id(userId);
-            bloodRequestModel.setUser_name(userName);
-            bloodRequestModel.setUser_email(email);
-            bloodRequestModel.setUser_number(contact_number);
-
-            requestCollection.document().set(bloodRequestModel)
-                    .addOnSuccessListener(
-                            new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-
-                                    Toast.makeText(UserActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                                    openNewsFeedFragment();
-                                }
+                                Toast.makeText(UserActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                openNewsFeedFragment();
                             }
-                    )
-                    .addOnFailureListener(
-                            new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
+                        }
+                )
+                .addOnFailureListener(
+                        new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
 
-                                    e.printStackTrace();
-                                    Toast.makeText(UserActivity.this, "Failed to Add", Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                                Toast.makeText(UserActivity.this, "Failed to Add", Toast.LENGTH_SHORT).show();
 
-                                }
                             }
-                    );
+                        }
+                );
 
-        }
-
-        return response;
+        return null;
     }
 
 

@@ -4,9 +4,8 @@ package com.karigor.tolet_seeker.data.model;
  * Created by touhid on 11/Nov/2019.
  * Email: udoy.touhid@gmail.com
  */
-public class HouseTextAttribute {
+public class HouseTextAttribute extends HouseBaseAttribute {
 
-    String label;
     private String value;
     int startRange;
     int endRange;
@@ -26,14 +25,6 @@ public class HouseTextAttribute {
         this.startRange = startRange;
         this.endRange = endRange;
         this.subTitle = subTitle;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
     }
 
     public int getStartRange() {

@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private int RC_SIGN_IN=50012;
 
-
     FragmentManager fragmentManager;
     private String TAG = "MainActivity";
     boolean doublePressedBackToExit = false;

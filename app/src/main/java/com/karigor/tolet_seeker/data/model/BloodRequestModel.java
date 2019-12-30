@@ -4,9 +4,7 @@ import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import java.util.List;
 
-/**
- * Restaurant POJO.
- */
+
 @IgnoreExtraProperties
 public class BloodRequestModel {
 

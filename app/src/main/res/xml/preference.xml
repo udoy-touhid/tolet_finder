@@ -33,12 +33,12 @@
         app:key="profile"
         app:title="Profile">
 
-        <ListPreference
-            app:entries="@array/blood_group"
-            app:entryValues="@array/blood_group"
-            app:key="blood_group_pref"
-            app:title="Blood Group"
-            app:summary="Select Your Blood Group"/>
+<!--        <ListPreference-->
+<!--            app:entries="@array/blood_group"-->
+<!--            app:entryValues="@array/blood_group"-->
+<!--            app:key="blood_group_pref"-->
+<!--            app:title="Blood Group"-->
+<!--            app:summary="Select Your Blood Group"/>-->
 
 
         <MultiSelectListPreference

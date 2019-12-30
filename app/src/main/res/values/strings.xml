@@ -11,6 +11,7 @@
     <!--    <string name="login_failed">"Login failed"</string>-->
     <string name="facebook_application_id">1279738428866125</string>
     <string name="facebook_app_id">1279738428866125</string>
+
     <string name="fb_login_protocol_scheme">fb1279738428866125</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="full_name"> Full Name </string>
@@ -74,7 +75,6 @@
     <string name="switch_label_yes">Yes</string>
     <string name="switch_label_no">No</string>
     <string-array name="district_list">
-        <item>District</item>
         <item>Dhaka</item>
         <item>Chittagong</item>
         <item>Rajshahi</item>
@@ -84,7 +84,7 @@
         <item>Jessore</item>
     </string-array>
 
-    <integer-array name="room_number">
+    <integer-array name="number_of_rooms">
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -135,27 +135,31 @@
     </string-array>
 
 
+    <string name="title_label">Title</string>
+    <string name="security_guard_status_label">Security Guard Available</string>
+    <string name="lift_status_label">Lift Available</string>
+    <string name="gas_status_label">Gas Line Available</string>
+    <string name="parking_status_label">Parking Available</string>
 
     <string name="room_number_label">Number of Rooms</string>
-    <string name="lift_status_label">Lift Available?</string>
-    <string name="gas_status_label">Gas Line Available?</string>
-    <string name="total_area_status_label">Area (Square Feet)</string>
+    <string name="total_area_status_label">Total Area</string>
     <string name="floor_status_label">Floor Number</string>
-    <string name="security_guard_status_label">Security Guard Available?</string>
-    <string name="parking_status_label">Parking Available?</string>
     <string name="renting_status_label">House Rent</string>
     <string name="district_status_label">District</string>
     <string name="short_description_status_label">Short Description</string>
 
 
     <string-array name="request_attributes">
-        <item>@string/room_number_label</item>
+
         <item>@string/lift_status_label</item>
         <item>@string/gas_status_label</item>
-        <item>@string/total_area_status_label</item>
-        <item>@string/floor_status_label</item>
         <item>@string/security_guard_status_label</item>
         <item>@string/parking_status_label</item>
+
+        <item>@string/title_label</item>
+        <item>@string/total_area_status_label</item>
+        <item>@string/room_number_label</item>
+        <item>@string/floor_status_label</item>
         <item>@string/renting_status_label</item>
         <item>@string/district_status_label</item>
         <item>@string/short_description_status_label</item>

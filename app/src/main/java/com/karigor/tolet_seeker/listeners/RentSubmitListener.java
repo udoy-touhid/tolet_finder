@@ -1,6 +1,6 @@
 package com.karigor.tolet_seeker.listeners;
 
-import com.karigor.tolet_seeker.data.model.HouseAttributeModel;
+import com.karigor.tolet_seeker.data.model.HouseModel;
 
 /**
  * Created by touhid on 2019-10-31.
@@ -8,6 +8,6 @@ import com.karigor.tolet_seeker.data.model.HouseAttributeModel;
  */
 public interface RentSubmitListener {
 
-    public String addHouseRequest(HouseAttributeModel houseAttributeRequest);
+    public String addHouseRequest(HouseModel houseAttributeRequest);
 
 }

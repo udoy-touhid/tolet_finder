@@ -5,9 +5,8 @@ package com.karigor.tolet_seeker.data.model;
  * Email: udoy.touhid@gmail.com
  */
 
-public class HouseSwitchAttribute {
+public class HouseSwitchAttribute extends HouseBaseAttribute {
 
-    String label;
     boolean value;
 
     public HouseSwitchAttribute(String label, boolean value) {
@@ -15,13 +14,6 @@ public class HouseSwitchAttribute {
         this.value = value;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
 
     public boolean isValue() {
         return value;

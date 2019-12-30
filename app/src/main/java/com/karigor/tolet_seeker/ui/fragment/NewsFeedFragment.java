@@ -2,6 +2,7 @@ package com.karigor.tolet_seeker.ui.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -9,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -29,18 +29,23 @@ import com.google.firebase.firestore.Query;
 import com.karigor.tolet_seeker.R;
 import com.karigor.tolet_seeker.adapter.PostAdapter;
 import com.karigor.tolet_seeker.data.model.BloodRequestModel;
+import com.karigor.tolet_seeker.data.model.HouseModel;
 import com.karigor.tolet_seeker.ui.Filters;
 import com.karigor.tolet_seeker.viewmodel.NewsfeedActivityViewModel;
+
+import com.karigor.tolet_seeker.ui.PostDetailsActivity;
 
 public class NewsFeedFragment extends Fragment implements
         com.karigor.tolet_seeker.ui.FilterDialogFragment.FilterListener,
         PostAdapter.OnPostSelectedListener, View.OnClickListener  {
+
 
     public interface NewsfeedListener{
 
         void openAddRequestFragment();
     }
 
+    private FirebaseUser firebaseUser;
     private static final int LIMIT = 50;
     private FirebaseFirestore mFirestore;
     private Query mQuery;
@@ -65,7 +70,6 @@ public class NewsFeedFragment extends Fragment implements
 
         if(context instanceof NewsfeedListener)
             newsfeedListener = (NewsfeedListener) context;
-
     }
 
 
@@ -78,6 +82,7 @@ public class NewsFeedFragment extends Fragment implements
 
         return rootView;
     }
+
 
     private void init(final View view) {
 
@@ -100,24 +105,32 @@ public class NewsFeedFragment extends Fragment implements
                    newsfeedListener.openAddRequestFragment();
             }
         });
-
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         mPostsRecycler = view.findViewById(R.id.recyclerPosts);
+
+        // Filter Dialog
+        mFilterDialog = new com.karigor.tolet_seeker.ui.FilterDialogFragment(this);
 
         // View model
         mViewModel = ViewModelProviders.of(this).get(NewsfeedActivityViewModel.class);
 
-        // Enable Firestore logging
-        //FirebaseFirestore.setLoggingEnabled(true);
+        initFirebase();
+        initRecycler(view);
+    }
+
+    private void initFirebase() {
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
 
         // Get ${LIMIT} restaurants
-        mQuery = mFirestore.collection(BloodRequestModel.COLLECTION_BLOOD_REQUESTS)
+        mQuery = mFirestore.collection(HouseModel.COLLECTION_RENT_REQUESTS)
                 .limit(LIMIT);
+    }
 
-        // RecyclerView
+    private void initRecycler(final View view){
+
         mAdapter = new PostAdapter(mQuery, this,firebaseUser.getUid()) {
             @Override
             protected void onDataChanged() {
@@ -141,9 +154,6 @@ public class NewsFeedFragment extends Fragment implements
 
         mPostsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mPostsRecycler.setAdapter(mAdapter);
-
-        // Filter Dialog
-        mFilterDialog = new com.karigor.tolet_seeker.ui.FilterDialogFragment(this);
     }
 
 
@@ -162,6 +172,7 @@ public class NewsFeedFragment extends Fragment implements
         }
     }
 
+
     @Override
     public void onStop() {
 
@@ -170,6 +181,7 @@ public class NewsFeedFragment extends Fragment implements
             mAdapter.stopListening();
         }
     }
+
 
     @Override
     public void onFilter(Filters filters) {
@@ -245,8 +257,12 @@ public class NewsFeedFragment extends Fragment implements
 
 
     @Override
-    public void onRestaurantSelected(DocumentSnapshot restaurant) {
-        Toast.makeText(getContext(), "details", Toast.LENGTH_SHORT).show();
+    public void onRestaurantSelected(DocumentSnapshot data) {
+
+        Intent intent = new Intent(getContext(),PostDetailsActivity.class);
+        intent.putExtra("houseModel",data.toObject(HouseModel.class));
+        startActivity(intent);
+       // Toast.makeText(getContext(), "details", Toast.LENGTH_SHORT).show();
 
     }
 }

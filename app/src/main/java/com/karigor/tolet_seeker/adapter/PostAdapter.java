@@ -6,13 +6,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 import com.karigor.tolet_seeker.R;
-import com.karigor.tolet_seeker.data.model.BloodRequestModel;
+import com.karigor.tolet_seeker.data.model.HouseModel;
 
 /**
  * RecyclerView adapter for a list of Restaurants.
@@ -21,7 +21,7 @@ public class PostAdapter extends FirestoreAdapter<PostAdapter.ViewHolder> {
 
     public interface OnPostSelectedListener {
 
-        void onRestaurantSelected(DocumentSnapshot restaurant);
+        void onRestaurantSelected(DocumentSnapshot data);
 
     }
 
@@ -35,6 +35,7 @@ public class PostAdapter extends FirestoreAdapter<PostAdapter.ViewHolder> {
 
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -70,20 +71,20 @@ public class PostAdapter extends FirestoreAdapter<PostAdapter.ViewHolder> {
         public void bind(final DocumentSnapshot snapshot,
                          final OnPostSelectedListener listener) {
 
-            BloodRequestModel bloodRequestModel = snapshot.toObject(BloodRequestModel.class);
+            HouseModel houseModel = snapshot.toObject(HouseModel.class);
 
             // Load image
-            Glide.with(imageView.getContext())
-                    .load(bloodRequestModel.getProfilePictureUrl())
-                    .into(imageView);
+//            Glide.with(imageView.getContext())
+//                    .load(houseModel)
+//                    .into(imageView);
 
-            nameView.setText(bloodRequestModel.getUser_name());
+            nameView.setText(houseModel.getArea_no());
 
-            if(bloodRequestModel.getUser_id().equals(user_id))
-                nameView.append("(YOU)");
+//            if(houseModel.ge().equals(user_id))
+//                nameView.append("(YOU)");
 
-            cityView.setText(bloodRequestModel.getBlood_group());
-            categoryView.setText(bloodRequestModel.getDistrict());
+            cityView.setText(houseModel.getDistrict());
+            categoryView.setText(houseModel.getDistrict());
 
 
             // Click listener
